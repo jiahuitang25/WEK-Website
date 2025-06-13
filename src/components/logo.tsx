@@ -7,9 +7,9 @@ const Logo = ({ className }: { className?: string }) => {
       <Image
         src="/logo.png" // Assumes logo.png is in the 'public' folder
         alt="WEK ENT. 简筑大师 Logo"
-        width={356} 
-        height={352} 
-        className="h-10 w-10 md:h-12 md:w-12"
+        width={356}
+        height={352}
+        className="h-14 w-14 md:h-16 md:w-16"
         data-ai-hint="company logo"
         priority // Add priority if this is a critical LCP element
       />
