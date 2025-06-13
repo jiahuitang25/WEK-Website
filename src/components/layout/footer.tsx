@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -15,32 +16,33 @@ const Footer = () => {
   ];
 
   const businessHoursList = [
-    { day: 'Monday', hours: '9:00 AM - 5:00 PM', dayIndex: 1, open: 9, close: 17 },
-    { day: 'Tuesday', hours: '9:00 AM - 5:00 PM' },
-    { day: 'Wednesday', hours: '9:00 AM - 5:00 PM' },
-    { day: 'Thursday', hours: '9:00 AM - 5:00 PM' },
-    { day: 'Friday', hours: '9:00 AM - 5:00 PM' },
-    { day: 'Saturday', hours: '9:00 AM - 5:00 PM' },
-    { day: 'Sunday', hours: '8:00 AM - 6:00 PM' },
+    { day: 'Monday',    hours: '9:00 AM - 5:00 PM', dayIndex: 1, open: 9, close: 17 },
+    { day: 'Tuesday',   hours: '9:00 AM - 5:00 PM', dayIndex: 2, open: 9, close: 17 },
+    { day: 'Wednesday', hours: '9:00 AM - 5:00 PM', dayIndex: 3, open: 9, close: 17 },
+    { day: 'Thursday',  hours: '9:00 AM - 5:00 PM', dayIndex: 4, open: 9, close: 17 },
+    { day: 'Friday',    hours: '9:00 AM - 5:00 PM', dayIndex: 5, open: 9, close: 17 },
+    { day: 'Saturday',  hours: '9:00 AM - 5:00 PM', dayIndex: 6, open: 9, close: 17 },
+    { day: 'Sunday',    hours: '8:00 AM - 6:00 PM', dayIndex: 0, open: 8, close: 18 },
   ];
 
-  const [mondayStatus, setMondayStatus] = useState<string>('');
+  const [liveDayStatus, setLiveDayStatus] = useState<{ dayIndex: number; statusText: string } | null>(null);
 
   useEffect(() => {
     const now = new Date();
-    const currentDay = now.getDay(); // Sunday = 0, Monday = 1
-    const currentHour = now.getHours();
-    const currentMinute = now.getMinutes();
+    const currentDayIndex = now.getDay(); // Sunday = 0, Monday = 1, ..., Saturday = 6
+    const currentHour = now.getHours(); // 0-23
 
-    const mondayInfo = businessHoursList.find(bh => bh.day === 'Monday');
+    const todayBusinessHours = businessHoursList.find(bh => bh.dayIndex === currentDayIndex);
 
-    if (mondayInfo && mondayInfo.open !== undefined && mondayInfo.close !== undefined) {
-      if (currentDay === mondayInfo.dayIndex) {
-        const isOpen = currentHour >= mondayInfo.open && (currentHour < mondayInfo.close || (currentHour === mondayInfo.close && currentMinute === 0));
-        setMondayStatus(isOpen ? 'Open now' : 'Closed now');
-      }
+    if (todayBusinessHours && typeof todayBusinessHours.open === 'number' && typeof todayBusinessHours.close === 'number') {
+      const isOpen = currentHour >= todayBusinessHours.open && currentHour < todayBusinessHours.close;
+      setLiveDayStatus({ dayIndex: currentDayIndex, statusText: isOpen ? 'Open now' : 'Closed now' });
+    } else {
+      // Fallback if hours for today are not defined, though they should be with the updated list
+      setLiveDayStatus({ dayIndex: currentDayIndex, statusText: 'Hours N/A' });
     }
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Empty dependency array ensures this runs once on mount
 
   return (
     <footer className="bg-secondary text-secondary-foreground py-12">
@@ -62,9 +64,9 @@ const Footer = () => {
                   <span>{item.day}:</span>
                   <span className="text-right">
                     {item.hours}
-                    {item.day === 'Monday' && mondayStatus && (
-                      <span className={`ml-1 font-semibold ${mondayStatus === 'Open now' ? 'text-primary' : 'text-destructive'}`}>
-                        ({mondayStatus})
+                    {liveDayStatus && item.dayIndex === liveDayStatus.dayIndex && (
+                      <span className={`ml-1 font-semibold ${liveDayStatus.statusText === 'Open now' ? 'text-primary' : 'text-destructive'}`}>
+                        ({liveDayStatus.statusText})
                       </span>
                     )}
                   </span>
@@ -109,3 +111,5 @@ const Footer = () => {
 };
 
 export default Footer;
+
+    
