@@ -14,16 +14,21 @@ const HeroSection = ({ id }: { id: string }) => {
         objectFit="cover"
         quality={80}
         className="z-0"
-        data-ai-hint="construction work"
+        data-ai-hint="construction site modern"
       />
-      <div className="absolute inset-0 bg-black/50 z-10" />
+      <div className="absolute inset-0 bg-black/60 z-10" /> {/* Increased overlay opacity slightly for better text readability */}
       <div className="relative z-20 container mx-auto flex flex-col items-center justify-center h-full text-center text-primary-foreground px-4">
         <h1 className="font-headline text-5xl md:text-7xl font-bold mb-6 animate-fade-in-down">
           Building Your Future, Today.
         </h1>
-        <p className="text-lg md:text-xl mb-8 max-w-2xl animate-fade-in-up">
-          WEK Build delivers exceptional construction services, combining innovative solutions with unwavering commitment to quality and client satisfaction.
-        </p>
+        <div className="text-lg md:text-xl mb-8 max-w-3xl animate-fade-in-up space-y-3"> {/* Increased max-width for longer slogan */}
+          <p>
+            A construction team with 20 years of experience, offering one-stop services from architectural drawings and house design to construction and obtaining the Certificate of Completion and Compliance (CCC).
+          </p>
+          <p>
+            We have completed over 100 projects of various scales, with a total value exceeding RM40 million.
+          </p>
+        </div>
         <Button asChild size="lg" variant="default" className="bg-accent hover:bg-accent/90 text-accent-foreground animate-fade-in-up animation-delay-200">
           <Link href="#projects">View Projects</Link>
         </Button>
