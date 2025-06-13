@@ -9,9 +9,9 @@ const Logo = ({ className }: { className?: string }) => {
         alt="WEK ENT. 简筑大师 Logo"
         width={356}
         height={352}
-        className="h-14 w-14 md:h-16 md:w-16"
+        className="h-14 w-14 md:h-16 md:w-16 border-0" // Added border-0
         data-ai-hint="company logo"
-        priority // Add priority if this is a critical LCP element
+        priority 
       />
       <span className="font-headline text-xl md:text-2xl font-bold">WEK ENT. 简筑大师</span>
     </Link>
