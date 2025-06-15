@@ -29,4 +29,14 @@ const nextConfig: NextConfig = {
   },
 };
 
+const isProd = process.env.NODE_ENV === 'production';
+
+module.exports = {
+  output: 'export',
+  assetPrefix: isProd ? '/WEK-Website/' : '',
+  images: {
+    unoptimized: true
+  }
+};
+
 export default nextConfig;
