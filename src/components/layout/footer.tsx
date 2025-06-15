@@ -7,7 +7,7 @@ import { Mail, MapPin, Phone, Facebook, Twitter, Linkedin, Instagram, Clock } fr
 import { useEffect, useState } from 'react';
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const [currentYear, setCurrentYear] = useState<number | null>(null);
   const socialLinks = [
     { Icon: Facebook, href: 'https://facebook.com', label: 'Facebook' },
     { Icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
@@ -28,6 +28,8 @@ const Footer = () => {
   const [liveDayStatus, setLiveDayStatus] = useState<{ dayIndex: number; statusText: string } | null>(null);
 
   useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+
     const now = new Date();
     const currentDayIndex = now.getDay(); // Sunday = 0, Monday = 1, ..., Saturday = 6
     const currentHour = now.getHours(); // 0-23
@@ -38,7 +40,6 @@ const Footer = () => {
       const isOpen = currentHour >= todayBusinessHours.open && currentHour < todayBusinessHours.close;
       setLiveDayStatus({ dayIndex: currentDayIndex, statusText: isOpen ? 'Open now' : 'Closed now' });
     } else {
-      // Fallback if hours for today are not defined, though they should be with the updated list
       setLiveDayStatus({ dayIndex: currentDayIndex, statusText: 'Hours N/A' });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -103,7 +104,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {currentYear} WEK ENT. 简筑大师. All rights reserved.</p>
+          <p>&copy; {currentYear !== null ? currentYear : 'Loading year...'} WEK ENT. 简筑大师. All rights reserved.</p>
         </div>
       </div>
     </footer>
