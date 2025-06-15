@@ -24,7 +24,7 @@ const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   output: 'export',
-  assetPrefix: isProd ? '/your-repo-name/' : '',
+  assetPrefix: isProd ? '/WEK-Website/' : '',
   images: {
     unoptimized: true
   }
