@@ -4,7 +4,7 @@ import type {NextConfig} from 'next';
 // IMPORTANT: If you are deploying to a subdirectory on GitHub Pages (e.g., https://<username>.github.io/<repository-name>/),
 // replace 'your-repo-name' with your repository name.
 // If deploying to the root (e.g., https://<username>.github.io/), you can remove or comment out basePath and assetPrefix.
-const repositoryName = 'your-repo-name';
+const repositoryName = 'WEK-Website';
 
 const nextConfig: NextConfig = {
   output: 'export', // Enables static HTML export
