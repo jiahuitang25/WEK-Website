@@ -1,15 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import getConfig from 'next/config';
-
-const { publicRuntimeConfig } = getConfig() || { publicRuntimeConfig: {} };
-const basePath = (publicRuntimeConfig && publicRuntimeConfig.basePath) || "";
 
 const Logo = ({ className }: { className?: string }) => {
   return (
     <Link href="/" className={`flex items-center space-x-2 text-primary hover:text-primary/90 transition-colors ${className}`}>
       <Image
-        src={`${basePath}/logo.png`}
+        src="/logo.png"
         alt="WEK ENT. 简筑大师 Logo"
         width={356}
         height={352}

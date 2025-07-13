@@ -136,21 +136,21 @@ const ContactSection = ({ id }: { id: string }) => {
                   <MapPin className="h-6 w-6 text-primary mt-1 shrink-0" />
                   <div>
                     <strong className="block text-foreground">Address:</strong>
-                    123 BuildWell St, Construct City, CS 12345
+                    Taman Bukit Mas, Taiping, Malaysia
                   </div>
                 </li>
                 <li className="flex items-start space-x-3">
                   <Phone className="h-6 w-6 text-primary mt-1 shrink-0" />
                   <div>
                     <strong className="block text-foreground">Phone:</strong>
-                    (555) 123-4567
+                    014-945 8023
                   </div>
                 </li>
                 <li className="flex items-start space-x-3">
                   <Mail className="h-6 w-6 text-primary mt-1 shrink-0" />
                   <div>
                     <strong className="block text-foreground">Email:</strong>
-                    info@wekbuild.com
+                    gynous@live.com
                   </div>
                 </li>
               </ul>
