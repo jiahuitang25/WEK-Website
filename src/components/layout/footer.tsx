@@ -1,9 +1,8 @@
-
 "use client";
 
 import Link from 'next/link';
 import Logo from '@/components/logo';
-import { Mail, MapPin, Phone, Facebook, Clock } from 'lucide-react';
+import { Mail, MapPin, Phone, Facebook, Clock, Users } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 const Footer = () => {
@@ -27,18 +26,23 @@ const Footer = () => {
   useEffect(() => {
     setCurrentYear(new Date().getFullYear());
 
-    const now = new Date();
-    const currentDayIndex = now.getDay(); // Sunday = 0, Monday = 1, ..., Saturday = 6
-    const currentHour = now.getHours(); // 0-23
+    const updateLiveStatus = () => {
+        const now = new Date();
+        const currentDayIndex = now.getDay();
+        const currentHour = now.getHours();
+        const todayBusinessHours = businessHoursList.find(bh => bh.dayIndex === currentDayIndex);
 
-    const todayBusinessHours = businessHoursList.find(bh => bh.dayIndex === currentDayIndex);
+        if (todayBusinessHours && typeof todayBusinessHours.open === 'number' && typeof todayBusinessHours.close === 'number') {
+            const isOpen = currentHour >= todayBusinessHours.open && currentHour < todayBusinessHours.close;
+            setLiveDayStatus({ dayIndex: currentDayIndex, statusText: isOpen ? 'Open now' : 'Closed now' });
+        } else {
+            setLiveDayStatus({ dayIndex: currentDayIndex, statusText: 'Hours N/A' });
+        }
+    };
 
-    if (todayBusinessHours && typeof todayBusinessHours.open === 'number' && typeof todayBusinessHours.close === 'number') {
-      const isOpen = currentHour >= todayBusinessHours.open && currentHour < todayBusinessHours.close;
-      setLiveDayStatus({ dayIndex: currentDayIndex, statusText: isOpen ? 'Open now' : 'Closed now' });
-    } else {
-      setLiveDayStatus({ dayIndex: currentDayIndex, statusText: 'Hours N/A' });
-    }
+    updateLiveStatus();
+    const intervalId = setInterval(updateLiveStatus, 60000); // Check every minute
+    return () => clearInterval(intervalId);
   }, []);
 
   return (
@@ -72,10 +76,12 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h3 className="font-headline text-lg font-semibold mb-4 text-primary">Contact Us</h3>
+            <h3 className="font-headline text-lg font-semibold mb-4 text-primary flex items-center">
+                <MapPin className="h-5 w-5 mr-2" /> Contact Us
+            </h3>
             <ul className="space-y-2 text-sm">
-              <li className="flex items-center space-x-2">
-                <MapPin className="h-4 w-4 text-primary" />
+              <li className="flex items-start space-x-2">
+                <MapPin className="h-4 w-4 text-primary mt-1 shrink-0" />
                 <span>Taman Bukit Mas, Taiping, Malaysia</span>
               </li>
               <li className="flex items-center space-x-2">
@@ -89,7 +95,9 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h3 className="font-headline text-lg font-semibold mb-4 text-primary">Follow Us</h3>
+            <h3 className="font-headline text-lg font-semibold mb-4 text-primary flex items-center">
+                <Users className="h-5 w-5 mr-2" /> Follow Us
+            </h3>
             <div className="flex space-x-4">
               {socialLinks.map(({ Icon, href, label }) => (
                 <Link key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="text-muted-foreground hover:text-primary transition-colors">
