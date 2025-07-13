@@ -5,16 +5,19 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
 const HeroSection = ({ id }: { id: string }) => {
+  const repositoryName = 'WEK-Website';
+  const heroImagePath = process.env.NODE_ENV === 'production' ? `/${repositoryName}/hero-background.jpg` : '/hero-background.jpg';
+
   return (
     <section id={id} className="relative h-[calc(100vh-5rem)] min-h-[600px] w-full">
       <Image
-        src="/_next/image?url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1494396191285-b1a1a6b0b543%3Fixlib%3Drb-4.0.3%26q%3D80%26fm%3Djpg%26crop%3Dentropy%26cs%3Dtinysrgb%26w%3D1920%26h%3D1080%26fit%3Dcrop&w=3840&q=75"
-        alt="A person working with wood and power tools."
+        src={heroImagePath}
+        alt="Construction site background"
         layout="fill"
         objectFit="cover"
         quality={80}
         className="z-0"
-        data-ai-hint="construction wood"
+        data-ai-hint="construction site"
         priority
       />
       <div className="absolute inset-0 bg-black/60 z-10" /> {/* Increased overlay opacity slightly for better text readability */}
