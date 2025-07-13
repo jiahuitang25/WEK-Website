@@ -8,13 +8,14 @@ const HeroSection = ({ id }: { id: string }) => {
   return (
     <section id={id} className="relative h-[calc(100vh-5rem)] min-h-[600px] w-full">
       <Image
-        src="https://placehold.co/1920x1080.png"
-        alt="Construction site background"
+        src="/_next/image?url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1494396191285-b1a1a6b0b543%3Fixlib%3Drb-4.0.3%26q%3D80%26fm%3Djpg%26crop%3Dentropy%26cs%3Dtinysrgb%26w%3D1920%26h%3D1080%26fit%3Dcrop&w=3840&q=75"
+        alt="A person working with wood and power tools."
         layout="fill"
         objectFit="cover"
         quality={80}
         className="z-0"
-        data-ai-hint="construction site modern"
+        data-ai-hint="construction wood"
+        priority
       />
       <div className="absolute inset-0 bg-black/60 z-10" /> {/* Increased overlay opacity slightly for better text readability */}
       <div className="relative z-20 container mx-auto flex flex-col items-center justify-center h-full text-center text-primary-foreground px-4">
