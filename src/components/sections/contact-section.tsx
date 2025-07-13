@@ -130,7 +130,7 @@ const ContactSection = ({ id }: { id: string }) => {
           </div>
           <div className="space-y-8">
             <div className="bg-card p-8 rounded-lg shadow-xl">
-              <h3 className="font-headline text-2xl font-semibold text-primary mb-6">Contact Us</h3>
+              <h3 className="font-headline text-2xl font-semibold text-primary mb-6">Contact Info</h3>
               <ul className="space-y-4 text-muted-foreground">
                 <li className="flex items-start space-x-3">
                   <MapPin className="h-6 w-6 text-primary mt-1 shrink-0" />
