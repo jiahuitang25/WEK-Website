@@ -15,8 +15,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, MapPin, Phone, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
-import Link from "next/link";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -26,13 +24,6 @@ const formSchema = z.object({
 });
 
 type FormData = z.infer<typeof formSchema>;
-
-const socialLinks = [
-  { Icon: Facebook, href: 'https://facebook.com', label: 'Facebook' },
-  { Icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
-  { Icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-  { Icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
-];
 
 const ContactSection = ({ id }: { id: string }) => {
   const { toast } = useToast();
@@ -62,10 +53,10 @@ const ContactSection = ({ id }: { id: string }) => {
         <div className="text-center mb-12">
           <h2 className="font-headline text-3xl md:text-4xl font-bold text-primary mb-4">Get In Touch</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Have a project in mind or want to learn more? Contact us today!
+            Have a project in mind or want to learn more? Send us a message!
           </p>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="max-w-2xl mx-auto">
           <div className="bg-card p-8 rounded-lg shadow-xl">
             <h3 className="font-headline text-2xl font-semibold text-primary mb-6">Send Us a Message</h3>
             <Form {...form}>
@@ -127,44 +118,6 @@ const ContactSection = ({ id }: { id: string }) => {
                 </Button>
               </form>
             </Form>
-          </div>
-          <div className="space-y-8">
-            <div className="bg-card p-8 rounded-lg shadow-xl">
-              <h3 className="font-headline text-2xl font-semibold text-primary mb-6">Contact Info</h3>
-              <ul className="space-y-4 text-muted-foreground">
-                <li className="flex items-start space-x-3">
-                  <MapPin className="h-6 w-6 text-primary mt-1 shrink-0" />
-                  <div>
-                    <strong className="block text-foreground">Address:</strong>
-                    Taman Bukit Mas, Taiping, Malaysia
-                  </div>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <Phone className="h-6 w-6 text-primary mt-1 shrink-0" />
-                  <div>
-                    <strong className="block text-foreground">Phone:</strong>
-                    014-945 8023
-                  </div>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <Mail className="h-6 w-6 text-primary mt-1 shrink-0" />
-                  <div>
-                    <strong className="block text-foreground">Email:</strong>
-                    gynous@live.com
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div className="bg-card p-8 rounded-lg shadow-xl">
-              <h3 className="font-headline text-2xl font-semibold text-primary mb-6">Follow Us Online</h3>
-              <div className="flex space-x-4">
-                {socialLinks.map(({ Icon, href, label }) => (
-                  <Link key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="text-muted-foreground hover:text-primary transition-colors p-2 rounded-full hover:bg-primary/10">
-                    <Icon className="h-8 w-8" />
-                  </Link>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </div>
