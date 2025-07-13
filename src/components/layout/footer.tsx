@@ -3,16 +3,13 @@
 
 import Link from 'next/link';
 import Logo from '@/components/logo';
-import { Mail, MapPin, Phone, Facebook, Twitter, Linkedin, Instagram, Clock } from 'lucide-react';
+import { Mail, MapPin, Phone, Facebook, Clock } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 const Footer = () => {
   const [currentYear, setCurrentYear] = useState<number | null>(null);
   const socialLinks = [
-    { Icon: Facebook, href: 'https://facebook.com', label: 'Facebook' },
-    { Icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
-    { Icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-    { Icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
+    { Icon: Facebook, href: 'https://www.facebook.com/profile.php?id=100063638340671', label: 'Facebook' },
   ];
 
   const businessHoursList = [
@@ -28,9 +25,9 @@ const Footer = () => {
   const [liveDayStatus, setLiveDayStatus] = useState<{ dayIndex: number; statusText: string } | null>(null);
 
   useEffect(() => {
-    const now = new Date();
-    setCurrentYear(now.getFullYear());
+    setCurrentYear(new Date().getFullYear());
 
+    const now = new Date();
     const currentDayIndex = now.getDay(); // Sunday = 0, Monday = 1, ..., Saturday = 6
     const currentHour = now.getHours(); // 0-23
 
@@ -42,7 +39,7 @@ const Footer = () => {
     } else {
       setLiveDayStatus({ dayIndex: currentDayIndex, statusText: 'Hours N/A' });
     }
-  }, []); // Empty dependency array ensures this runs once on mount
+  }, []);
 
   return (
     <footer className="bg-secondary text-secondary-foreground py-12">
