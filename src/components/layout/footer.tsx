@@ -28,9 +28,9 @@ const Footer = () => {
   const [liveDayStatus, setLiveDayStatus] = useState<{ dayIndex: number; statusText: string } | null>(null);
 
   useEffect(() => {
-    setCurrentYear(new Date().getFullYear());
-
     const now = new Date();
+    setCurrentYear(now.getFullYear());
+
     const currentDayIndex = now.getDay(); // Sunday = 0, Monday = 1, ..., Saturday = 6
     const currentHour = now.getHours(); // 0-23
 
@@ -42,7 +42,6 @@ const Footer = () => {
     } else {
       setLiveDayStatus({ dayIndex: currentDayIndex, statusText: 'Hours N/A' });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Empty dependency array ensures this runs once on mount
 
   return (
@@ -80,15 +79,15 @@ const Footer = () => {
             <ul className="space-y-2 text-sm">
               <li className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4 text-primary" />
-                <span>123 BuildWell St, Construct City, CS 12345</span>
+                <span>Taman Bukit Mas, Taiping, Malaysia</span>
               </li>
               <li className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 text-primary" />
-                <span>(555) 123-4567</span>
+                <span>014-945 8023</span>
               </li>
               <li className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-primary" />
-                <span>info@wekbuild.com</span>
+                <span>gynous@live.com</span>
               </li>
             </ul>
           </div>
@@ -104,7 +103,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {currentYear !== null ? currentYear : 'Loading year...'} WEK ENT. 简筑大师. All rights reserved.</p>
+          <p>&copy; {currentYear !== null ? currentYear : '...'} WEK ENT. 简筑大师. All rights reserved.</p>
         </div>
       </div>
     </footer>
@@ -112,5 +111,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-    
