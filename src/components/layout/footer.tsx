@@ -7,9 +7,6 @@ import { useEffect, useState } from 'react';
 
 const Footer = () => {
   const [currentYear, setCurrentYear] = useState<number | null>(null);
-  const socialLinks = [
-    { Icon: Facebook, href: 'https://www.facebook.com/profile.php?id=100063638340671', label: 'Facebook' },
-  ];
 
   const businessHoursList = [
     { day: 'Monday',    hours: '9:00 AM - 5:00 PM', dayIndex: 1, open: 9, close: 17 },
@@ -99,20 +96,21 @@ const Footer = () => {
                 <Mail className="h-4 w-4 text-primary" />
                 <span>gynous@live.com</span>
               </li>
+              <li className="flex items-center space-x-2">
+                <Facebook className="h-4 w-4 text-primary" />
+                <a 
+                  href="https://www.facebook.com/profile.php?id=100063638340671&mibextid=wwXIfr&rdid=0Nbut7LRK73tLFDl" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-primary transition-colors"
+                >
+                  W E K ENT.
+                </a>
+              </li>
             </ul>
           </div>
-          <div>
-            <div className="flex items-center mb-4">
-                <h3 className="font-headline text-lg font-semibold text-primary mr-4">Follow Us</h3>
-                <div className="flex space-x-4">
-                {socialLinks.map(({ Icon, href, label }) => (
-                    <Link key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="text-muted-foreground hover:text-primary transition-colors">
-                    <Icon className="h-6 w-6" />
-                    </Link>
-                ))}
-                </div>
-            </div>
-          </div>
+          {/* This empty div is to maintain the 4-column layout on larger screens */}
+          <div></div>
         </div>
         <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
           <p>&copy; {currentYear !== null ? currentYear : '...'} WEK ENT. 简筑大师. All rights reserved.</p>
