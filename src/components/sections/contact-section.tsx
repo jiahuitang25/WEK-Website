@@ -46,18 +46,27 @@ const ContactSection = ({ id }: { id: string }) => {
     });
     form.reset();
   }
+  
+  const repositoryName = 'WEK-Website';
+  const contactUsBgPath = process.env.NODE_ENV === 'production' ? `/${repositoryName}/contact-us-background.jpg` : '/contact-us-background.jpg';
+
 
   return (
-    <section id={id} className="py-16 md:py-24 bg-secondary">
-      <div className="container mx-auto px-4 md:px-6">
+    <section 
+      id={id} 
+      className="relative py-16 md:py-24 bg-cover bg-center"
+      style={{ backgroundImage: `url('${contactUsBgPath}')`}}
+    >
+      <div className="absolute inset-0 bg-black/70 z-0" />
+      <div className="relative z-10 container mx-auto px-4 md:px-6">
         <div className="text-center mb-12">
-          <h2 className="font-headline text-3xl md:text-4xl font-bold text-primary mb-4">Get In Touch</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="font-headline text-3xl md:text-4xl font-bold text-primary-foreground mb-4">Get In Touch</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-gray-300">
             Have a project in mind or want to learn more? Send us a message!
           </p>
         </div>
         <div className="max-w-2xl mx-auto">
-          <div className="bg-card p-8 rounded-lg shadow-xl">
+          <div className="bg-card/90 backdrop-blur-sm p-8 rounded-lg shadow-xl">
             <h3 className="font-headline text-2xl font-semibold text-primary mb-6">Send Us a Message</h3>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
