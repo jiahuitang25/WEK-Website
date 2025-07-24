@@ -57,7 +57,7 @@ const ContactSection = ({ id }: { id: string }) => {
       className="relative py-16 md:py-24 bg-cover bg-center"
       style={{ backgroundImage: `url('${contactUsBgPath}')`}}
     >
-      <div className="absolute inset-0 bg-black/70 z-0" />
+      <div className="absolute inset-0 bg-black/60 z-0" />
       <div className="relative z-10 container mx-auto px-4 md:px-6">
         <div className="text-center mb-12">
           <h2 className="font-headline text-3xl md:text-4xl font-bold text-primary-foreground mb-4">Get In Touch</h2>

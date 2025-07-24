@@ -20,7 +20,7 @@ const HeroSection = ({ id }: { id: string }) => {
         data-ai-hint="construction site"
         priority
       />
-      <div className="absolute inset-0 bg-black/60 z-10" /> {/* Increased overlay opacity slightly for better text readability */}
+      <div className="absolute inset-0 bg-black/50 z-10" />
       <div className="relative z-20 container mx-auto flex flex-col items-center justify-center h-full text-center text-primary-foreground px-4">
         <h1 className="font-headline text-5xl md:text-7xl font-bold mb-6 animate-fade-in-down">
           Building Your Future, Today.
