@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Logo from '@/components/logo';
-import { Mail, MapPin, Phone, Facebook } from 'lucide-react';
+import { Mail, MapPin, Phone, Facebook, ExternalLink } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 const Footer = () => {
@@ -84,9 +84,10 @@ const Footer = () => {
                     href="https://www.google.com/maps/search/?api=1&query=Taman+Bukit+Mas,+Taiping,+Malaysia" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-xs text-muted-foreground hover:text-primary transition-colors block mt-1"
+                    className="flex items-center space-x-1 text-xs text-muted-foreground hover:text-primary transition-colors mt-1"
                   >
-                    Open in map
+                    <span>Open in maps</span>
+                    <ExternalLink className="h-3 w-3" />
                   </a>
                 </div>
               </li>
