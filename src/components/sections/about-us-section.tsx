@@ -31,7 +31,7 @@ const AboutUsSection = ({ id }: { id: string }) => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {aboutData.map((item, index) => (
-            <Card key={index} className="text-center shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <Card key={index} className="text-center shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 rounded-2xl">
               <CardHeader>
                 <div className="flex justify-center">{item.icon}</div>
                 <CardTitle className="font-headline text-2xl text-primary">{item.title}</CardTitle>
@@ -43,7 +43,7 @@ const AboutUsSection = ({ id }: { id: string }) => {
           ))}
         </div>
         <div className="mt-16 text-center">
-          <Card className="max-w-3xl mx-auto p-8 shadow-lg">
+          <Card className="max-w-3xl mx-auto p-8 shadow-lg rounded-2xl">
              <div className="flex justify-center mb-4">
                 <Users className="h-12 w-12 text-primary" />
             </div>

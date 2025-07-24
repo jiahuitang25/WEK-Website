@@ -46,7 +46,7 @@ const ServicesSection = ({ id }: { id: string }) => {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <Card key={index} className="text-center shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <Card key={index} className="text-center shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 rounded-2xl">
               <CardHeader>
                 <div className="flex justify-center">{service.icon}</div>
                 <CardTitle className="font-headline text-2xl text-primary">{service.title}</CardTitle>
