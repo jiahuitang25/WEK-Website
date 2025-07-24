@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Logo from '@/components/logo';
-import { Mail, MapPin, Phone, Facebook, Clock, Users } from 'lucide-react';
+import { Mail, MapPin, Phone, Facebook } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 const Footer = () => {
@@ -56,29 +56,25 @@ const Footer = () => {
             </p>
           </div>
           <div>
-            <h3 className="font-headline text-lg font-semibold mb-4 text-primary flex items-center">
-              <Clock className="h-5 w-5 mr-2" /> Business Hours
-            </h3>
+            <h3 className="font-headline text-lg font-semibold mb-4 text-primary">Business Hours</h3>
             <ul className="space-y-2 text-sm">
               {businessHoursList.map((item) => (
-                <li key={item.day} className="flex justify-between">
-                  <span>{item.day}:</span>
-                  <span className="text-right">
-                    {item.hours}
-                    {liveDayStatus && item.dayIndex === liveDayStatus.dayIndex && (
-                      <span className={`ml-1 font-semibold ${liveDayStatus.statusText === 'Open now' ? 'text-primary' : 'text-destructive'}`}>
+                <li key={item.day} className="flex flex-col">
+                  <div className="flex justify-between">
+                    <span>{item.day}:</span>
+                    <span>{item.hours}</span>
+                  </div>
+                  {liveDayStatus && item.dayIndex === liveDayStatus.dayIndex && (
+                      <span className={`text-right font-semibold ${liveDayStatus.statusText === 'Open now' ? 'text-primary' : 'text-destructive'}`}>
                         ({liveDayStatus.statusText})
                       </span>
-                    )}
-                  </span>
+                  )}
                 </li>
               ))}
             </ul>
           </div>
           <div>
-            <h3 className="font-headline text-lg font-semibold mb-4 text-primary flex items-center">
-                <MapPin className="h-5 w-5 mr-2" /> Contact Us
-            </h3>
+            <h3 className="font-headline text-lg font-semibold mb-4 text-primary">Contact Us</h3>
             <ul className="space-y-2 text-sm">
               <li className="flex items-start space-x-2">
                 <MapPin className="h-4 w-4 text-primary mt-1 shrink-0" />
@@ -95,15 +91,15 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h3 className="font-headline text-lg font-semibold mb-4 text-primary flex items-center">
-                <Users className="h-5 w-5 mr-2" /> Follow Us
-            </h3>
-            <div className="flex space-x-4">
-              {socialLinks.map(({ Icon, href, label }) => (
-                <Link key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="text-muted-foreground hover:text-primary transition-colors">
-                  <Icon className="h-6 w-6" />
-                </Link>
-              ))}
+            <div className="flex items-center mb-4">
+                <h3 className="font-headline text-lg font-semibold text-primary mr-4">Follow Us</h3>
+                <div className="flex space-x-4">
+                {socialLinks.map(({ Icon, href, label }) => (
+                    <Link key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="text-muted-foreground hover:text-primary transition-colors">
+                    <Icon className="h-6 w-6" />
+                    </Link>
+                ))}
+                </div>
             </div>
           </div>
         </div>
