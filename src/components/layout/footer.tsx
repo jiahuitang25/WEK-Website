@@ -78,7 +78,17 @@ const Footer = () => {
             <ul className="space-y-2 text-sm">
               <li className="flex items-start space-x-2">
                 <MapPin className="h-4 w-4 text-primary mt-1 shrink-0" />
-                <span>Taman Bukit Mas, Taiping, Malaysia</span>
+                <div>
+                  <span>Taman Bukit Mas, Taiping, Malaysia</span>
+                  <a 
+                    href="https://www.google.com/maps/search/?api=1&query=Taman+Bukit+Mas,+Taiping,+Malaysia" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-xs text-muted-foreground hover:text-primary transition-colors block mt-1"
+                  >
+                    Open in map
+                  </a>
+                </div>
               </li>
               <li className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 text-primary" />
