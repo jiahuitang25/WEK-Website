@@ -1,3 +1,6 @@
+
+"use client";
+
 import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { MapPin } from 'lucide-react';
@@ -7,33 +10,38 @@ const projects = [
     name: "Modern Villa Retreat",
     description: "A luxurious residential villa featuring contemporary design, smart home technology, and breathtaking panoramic views.",
     location: "Hillcrest Estates, CA",
-    imageUrl: "https://placehold.co/600x400.png",
+    imageName: "project-1.jpg",
     imageHint: "modern villa"
   },
   {
     name: "Downtown Office Complex",
     description: "A multi-story office building incorporating sustainable materials and energy-efficient systems for a modern workspace.",
     location: "Metro Business District, NY",
-    imageUrl: "https://placehold.co/600x400.png",
+    imageName: "project-2.jpg",
     imageHint: "office complex"
   },
   {
     name: "Historic Landmark Restoration",
     description: "Meticulous restoration of a 19th-century landmark, preserving its historical integrity while upgrading structural elements.",
     location: "Old Town Heritage Site, MA",
-    imageUrl: "https://placehold.co/600x400.png",
+    imageName: "project-3.jpg",
     imageHint: "historic building"
   },
   {
     name: "Community Sports Center",
     description: "A versatile and accessible sports facility designed for local community engagement, featuring multiple courts and amenities.",
     location: "Greenfield Community Park, TX",
-    imageUrl: "https://placehold.co/600x400.png",
+    imageName: "project-4.jpg",
     imageHint: "sports center"
   },
 ];
 
 const ProjectPortfolioSection = ({ id }: { id: string }) => {
+  const repositoryName = 'WEK-Website';
+  const getImageUrl = (imageName: string) => {
+    return process.env.NODE_ENV === 'production' ? `/${repositoryName}/${imageName}` : `/${imageName}`;
+  };
+
   return (
     <section id={id} className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4 md:px-6">
@@ -48,7 +56,7 @@ const ProjectPortfolioSection = ({ id }: { id: string }) => {
             <Card key={index} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
               <div className="relative w-full h-64">
                 <Image
-                  src={project.imageUrl}
+                  src={getImageUrl(project.imageName)}
                   alt={project.name}
                   layout="fill"
                   objectFit="cover"
