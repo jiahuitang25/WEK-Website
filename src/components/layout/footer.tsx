@@ -62,7 +62,7 @@ const Footer = () => {
                     <span>{item.hours}</span>
                   </div>
                   {liveDayStatus && item.dayIndex === liveDayStatus.dayIndex && (
-                      <span className={`text-right font-semibold ${liveDayStatus.statusText === 'Open now' ? 'text-primary' : 'text-destructive'}`}>
+                      <span className={`text-right font-semibold ${liveDayStatus.statusText === 'Open now' ? 'text-green-600' : 'text-destructive'}`}>
                         ({liveDayStatus.statusText})
                       </span>
                   )}
@@ -84,7 +84,7 @@ const Footer = () => {
                     className="flex items-center space-x-1 text-xs text-muted-foreground hover:text-primary transition-colors mt-1"
                   >
                     <span>Open in maps</span>
-                    <ExternalLink className="h-3 w-3" />
+                    <ExternalLink className="h-3 w-3 text-accent" />
                   </a>
                 </div>
               </li>

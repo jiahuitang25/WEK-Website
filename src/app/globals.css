@@ -18,10 +18,10 @@ body {
     --card-foreground: 0 0% 33%; /* Gray text on cards */
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 33%;
-    --primary: 215 100% 34%; /* Strong blue */
+    --primary: 240 2% 12%; /* #1D1D1F */
     --primary-foreground: 210 40% 98%; /* Light text for primary */
     --secondary: 220 50% 90%; /* Lighter version of background or a neutral light gray */
-    --secondary-foreground: 215 100% 34%; /* Primary color on secondary */
+    --secondary-foreground: 240 2% 12%; /* Primary color on secondary */
     --muted: 220 40% 88%; /* Muted version of background */
     --muted-foreground: 0 0% 45%; /* Slightly lighter gray for muted text */
     --accent: 360 82% 61%; /* Vivid red */
@@ -30,7 +30,7 @@ body {
     --destructive-foreground: 0 0% 98%; /* Default destructive foreground */
     --border: 220 30% 85%; /* Light border, derived from background */
     --input: 220 30% 88%; /* Light input, derived from background */
-    --ring: 215 100% 34%; /* Primary color for ring */
+    --ring: 240 2% 12%; /* Primary color for ring */
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
@@ -53,8 +53,8 @@ body {
     --card-foreground: 0 0% 98%;
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
-    --primary: 215 100% 60%; /* Adjusted blue for dark mode */
-    --primary-foreground: 210 40% 9.8%;
+    --primary: 0 0% 98%; /* Adjusted for dark mode */
+    --primary-foreground: 240 2% 12%;
     --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
     --muted: 240 3.7% 15.9%;
@@ -65,7 +65,7 @@ body {
     --destructive-foreground: 0 0% 98%;
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
-    --ring: 215 100% 50%; /* Adjusted ring for dark mode */
+    --ring: 0 0% 98%; /* Adjusted ring for dark mode */
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
