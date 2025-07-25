@@ -63,7 +63,7 @@ const Header = () => {
                 href={item.href}
                 className={`rounded-md px-3 py-2 text-sm font-medium transition-all duration-300 ${
                   activeSection === item.href.substring(1)
-                    ? 'bg-primary text-primary-foreground'
+                    ? 'bg-foreground text-primary-foreground'
                     : 'text-foreground/80 hover:bg-muted/80 hover:text-foreground'
                 }`}
               >
