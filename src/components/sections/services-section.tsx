@@ -8,34 +8,40 @@ import { Home, Building, Wrench, ClipboardList, DraftingCompass, Shovel, Chevron
 
 const services = [
   {
-    icon: <Home className="h-10 w-10 text-primary mb-4" />,
     title: "Residential Construction",
     description: "Custom homes, multi-family units, and renovations tailored to your vision and lifestyle.",
+    imageName: "service-1.jpg",
+    imageHint: "residential construction"
   },
   {
-    icon: <Building className="h-10 w-10 text-primary mb-4" />,
     title: "Commercial Building",
     description: "State-of-the-art commercial spaces, office buildings, and retail outlets designed for functionality.",
+    imageName: "service-2.jpg",
+    imageHint: "commercial building"
   },
   {
-    icon: <Wrench className="h-10 w-10 text-primary mb-4" />,
     title: "Remodeling & Renovations",
     description: "Transforming existing structures with quality craftsmanship, modernizing spaces while preserving character.",
+    imageName: "service-3.jpg",
+    imageHint: "house renovation"
   },
   {
-    icon: <ClipboardList className="h-10 w-10 text-primary mb-4" />,
     title: "Project Management",
     description: "Comprehensive oversight of every project detail, ensuring on-time and on-budget completion.",
+    imageName: "service-4.jpg",
+    imageHint: "construction management"
   },
   {
-    icon: <DraftingCompass className="h-10 w-10 text-primary mb-4" />,
     title: "Design & Build",
     description: "Integrated design and construction services for a seamless project delivery from concept to creation.",
+    imageName: "service-5.jpg",
+    imageHint: "architectural design"
   },
   {
-    icon: <Shovel className="h-10 w-10 text-primary mb-4" />,
     title: "Site Development",
     description: "Expert site preparation, excavation, and infrastructure development for a solid foundation.",
+    imageName: "service-6.jpg",
+    imageHint: "construction site"
   },
 ];
 
@@ -75,6 +81,11 @@ const ServicesSection = ({ id }: { id: string }) => {
     }
   }, []);
 
+  const repositoryName = 'WEK-Website';
+  const getImageUrl = (imageName: string) => {
+    return process.env.NODE_ENV === 'production' ? `/${repositoryName}/${imageName}` : `/${imageName}`;
+  };
+
   return (
     <section id={id} className="py-16 md:py-24 bg-secondary">
       <div className="container mx-auto px-8 md:px-12">
@@ -99,14 +110,20 @@ const ServicesSection = ({ id }: { id: string }) => {
           <div ref={scrollContainerRef} className="flex overflow-x-auto space-x-8 pb-4 -mx-4 px-4 py-8">
             {services.map((service, index) => (
               <div key={index} className="flex-shrink-0 w-80">
-                <Card className="text-center shadow-lg hover:shadow-xl hover:scale-105 hover:z-10 transition-all duration-300 rounded-2xl h-full flex flex-col relative">
-                  <CardHeader>
-                    <div className="flex justify-center">{service.icon}</div>
-                    <CardTitle className="font-headline text-2xl text-primary">{service.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="flex-grow">
-                    <p className="text-muted-foreground">{service.description}</p>
-                  </CardContent>
+                 <Card 
+                  className="shadow-lg hover:shadow-xl hover:scale-105 hover:z-10 transition-all duration-300 rounded-2xl h-full flex flex-col justify-end relative bg-cover bg-center overflow-hidden"
+                  style={{backgroundImage: `url('${getImageUrl(service.imageName)}')`}}
+                  data-ai-hint={service.imageHint}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                  <div className="relative p-6 text-white text-left">
+                    <CardHeader className="p-0 mb-2">
+                      <CardTitle className="font-headline text-2xl text-white">{service.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-0">
+                      <p className="text-white/80">{service.description}</p>
+                    </CardContent>
+                  </div>
                 </Card>
               </div>
             ))}
