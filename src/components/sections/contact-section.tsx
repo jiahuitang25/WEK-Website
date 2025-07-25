@@ -64,12 +64,28 @@ const ContactSection = ({ id }: { id: string }) => {
   }, []);
 
   async function onSubmit(data: FormData) {
-    // In a real app, you would send this data to a server
-    console.log(data);
+    const phoneNumber = "60149458023"; // Your WhatsApp number with country code, without '+'
+    
+    const messageBody = `
+New Inquiry from Website:
+-------------------------
+Name: ${data.name}
+Email: ${data.email}
+Phone: ${data.phone || 'Not provided'}
+-------------------------
+Message:
+${data.message}
+    `.trim();
+
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(messageBody)}`;
+
+    window.open(whatsappUrl, '_blank');
+    
     toast({
-      title: "Message Sent!",
-      description: "Thank you for contacting us. We'll be in touch soon.",
+      title: "Redirecting to WhatsApp...",
+      description: "Your message is ready to be sent.",
     });
+    
     form.reset();
   }
   
