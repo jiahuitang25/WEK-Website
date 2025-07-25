@@ -54,7 +54,7 @@ const Footer = () => {
           </div>
           <div>
             <h3 className="font-headline text-lg font-semibold mb-4 text-primary">Business Hours</h3>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-2 text-sm text-muted-foreground">
               {businessHoursList.map((item) => (
                 <li key={item.day} className="flex flex-col">
                   <div className="flex justify-between">
@@ -72,7 +72,7 @@ const Footer = () => {
           </div>
           <div>
             <h3 className="font-headline text-lg font-semibold mb-4 text-primary">Contact Us</h3>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-2 text-sm text-muted-foreground">
               <li className="flex items-start space-x-2">
                 <MapPin className="h-4 w-4 text-primary mt-1 shrink-0" />
                 <div>
@@ -81,10 +81,10 @@ const Footer = () => {
                     href="https://www.google.com/maps/search/?api=1&query=Taman+Bukit+Mas,+Taiping,+Malaysia" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex items-center space-x-1 text-xs text-muted-foreground hover:text-primary transition-colors mt-1"
+                    className="flex items-center space-x-1 text-xs text-blue-600 hover:text-blue-800 transition-colors mt-1"
                   >
                     <span>Open in maps</span>
-                    <ExternalLink className="h-3 w-3 text-accent" />
+                    <ExternalLink className="h-3 w-3" />
                   </a>
                 </div>
               </li>
@@ -102,7 +102,7 @@ const Footer = () => {
                   href="https://www.facebook.com/profile.php?id=100063638340671&mibextid=wwXIfr&rdid=0Nbut7LRK73tLFDl" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="hover:text-primary transition-colors"
+                  className="hover:text-primary transition-colors text-muted-foreground"
                 >
                   W E K ENT.
                 </a>
