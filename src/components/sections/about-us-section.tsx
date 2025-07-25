@@ -57,9 +57,9 @@ const AboutUsSection = ({ id }: { id: string }) => {
       <div className="container mx-auto px-8 md:px-12">
         {isVisible && (
           <>
-            <div className="text-center mb-12 animate-slide-up">
-              <h2 className="font-headline text-3xl md:text-4xl font-bold text-primary mb-4">About WEK Build</h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto animation-delay-200">
+            <div className="text-center mb-12">
+              <h2 className="font-headline text-3xl md:text-4xl font-bold text-primary mb-4 animate-slide-up">About WEK Build</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto animate-slide-up animation-delay-200">
                 Learn more about our dedication to excellence and the principles that guide our work.
               </p>
             </div>
