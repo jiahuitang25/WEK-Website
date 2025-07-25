@@ -43,7 +43,7 @@ const AboutUsSection = ({ id }: { id: string }) => {
           ))}
         </div>
         <div className="mt-16 text-center">
-          <Card className="max-w-3xl mx-auto p-8 shadow-lg rounded-2xl">
+          <Card className="max-w-3xl mx-auto p-8 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 rounded-2xl">
              <div className="flex justify-center mb-4">
                 <Users className="h-12 w-12 text-primary" />
             </div>
