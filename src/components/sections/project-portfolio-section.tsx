@@ -45,37 +45,39 @@ const ProjectPortfolioSection = ({ id }: { id: string }) => {
   return (
     <section id={id} className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-8 md:px-12">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 animate-slide-up">
           <h2 className="font-headline text-3xl md:text-4xl font-bold text-primary mb-4">Our Projects</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto animation-delay-200">
             A showcase of our commitment to quality, innovation, and client satisfaction.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 py-8">
           {projects.map((project, index) => (
-            <Card key={index} className="overflow-hidden shadow-lg hover:shadow-xl hover:scale-105 hover:z-10 transition-all duration-300 flex flex-col rounded-2xl relative">
-              <div className="relative w-full h-64">
-                <Image
-                  src={getImageUrl(project.imageName)}
-                  alt={project.name}
-                  layout="fill"
-                  objectFit="cover"
-                  data-ai-hint={project.imageHint}
-                />
-              </div>
-              <CardHeader>
-                <CardTitle className="font-headline text-2xl text-primary">{project.name}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <CardDescription>{project.description}</CardDescription>
-              </CardContent>
-              <CardFooter>
-                <div className="flex items-center text-sm text-muted-foreground">
-                  <MapPin className="h-4 w-4 mr-2 text-primary" />
-                  {project.location}
+            <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 200}ms` }}>
+              <Card className="overflow-hidden shadow-lg hover:shadow-xl hover:scale-105 hover:z-10 transition-all duration-300 flex flex-col rounded-2xl relative h-full">
+                <div className="relative w-full h-64">
+                  <Image
+                    src={getImageUrl(project.imageName)}
+                    alt={project.name}
+                    layout="fill"
+                    objectFit="cover"
+                    data-ai-hint={project.imageHint}
+                  />
                 </div>
-              </CardFooter>
-            </Card>
+                <CardHeader>
+                  <CardTitle className="font-headline text-2xl text-primary">{project.name}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  <CardDescription>{project.description}</CardDescription>
+                </CardContent>
+                <CardFooter>
+                  <div className="flex items-center text-sm text-muted-foreground">
+                    <MapPin className="h-4 w-4 mr-2 text-primary" />
+                    {project.location}
+                  </div>
+                </CardFooter>
+              </Card>
+            </div>
           ))}
         </div>
       </div>

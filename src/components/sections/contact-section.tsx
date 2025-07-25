@@ -59,13 +59,13 @@ const ContactSection = ({ id }: { id: string }) => {
     >
       <div className="absolute inset-0 bg-black/60 z-0" />
       <div className="relative z-10 container mx-auto px-8 md:px-12">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 animate-slide-up">
           <h2 className="font-headline text-3xl md:text-4xl font-bold text-primary-foreground mb-4">Get In Touch</h2>
-          <p className="text-lg max-w-2xl mx-auto text-white">
+          <p className="text-lg max-w-2xl mx-auto text-white animation-delay-200">
             Have a project in mind or want to learn more? Send us a message!
           </p>
         </div>
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-2xl mx-auto animate-fade-in animation-delay-400">
           <div className="bg-card/90 backdrop-blur-sm p-8 rounded-lg shadow-xl">
             <h3 className="font-headline text-2xl font-semibold text-primary mb-6">Send Us a Message</h3>
             <Form {...form}>

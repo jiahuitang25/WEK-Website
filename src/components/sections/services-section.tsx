@@ -91,13 +91,13 @@ const ServicesSection = ({ id }: { id: string }) => {
   return (
     <section id={id} className="py-16 md:py-24 bg-secondary">
       <div className="container mx-auto px-8 md:px-12">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 animate-slide-up">
           <h2 className="font-headline text-3xl md:text-4xl font-bold text-primary mb-4">Our Services</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto animation-delay-200">
             Comprehensive construction solutions to meet all your project needs.
           </p>
         </div>
-        <div className="relative group">
+        <div className="relative group animate-fade-in animation-delay-400">
           <Button 
             variant="outline" 
             size="icon" 
@@ -113,7 +113,7 @@ const ServicesSection = ({ id }: { id: string }) => {
             {services.map((service, index) => (
               <div key={index} className="flex-shrink-0 w-96 h-96">
                  <Card 
-                  className="shadow-lg hover:shadow-xl hover:scale-105 hover:z-10 transition-all duration-300 rounded-2xl h-full flex flex-col justify-start relative bg-cover bg-center overflow-hidden"
+                  className="shadow-lg hover:shadow-xl hover:scale-105 hover:z-10 transition-all duration-300 rounded-2xl h-full flex flex-col justify-end relative bg-cover bg-center overflow-hidden"
                   style={{backgroundImage: `url('${getImageUrl(service.imageName)}')`}}
                   data-ai-hint={service.imageHint}
                 >
