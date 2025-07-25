@@ -61,7 +61,7 @@ const ContactSection = ({ id }: { id: string }) => {
       <div className="relative z-10 container mx-auto px-4 md:px-6">
         <div className="text-center mb-12">
           <h2 className="font-headline text-3xl md:text-4xl font-bold text-primary-foreground mb-4">Get In Touch</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-gray-300">
+          <p className="text-lg max-w-2xl mx-auto text-white">
             Have a project in mind or want to learn more? Send us a message!
           </p>
         </div>
