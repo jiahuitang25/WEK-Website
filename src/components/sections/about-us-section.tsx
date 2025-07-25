@@ -21,27 +21,21 @@ const aboutData = [
 ];
 
 const AboutUsSection = ({ id }: { id: string }) => {
-  const repositoryName = 'WEK-Website';
-  const aboutUsBgPath = process.env.NODE_ENV === 'production' ? `/${repositoryName}/about-us-image.jpg` : '/about-us-image.jpg';
-
   return (
     <section 
       id={id} 
-      className="relative py-16 md:py-24 bg-cover bg-center bg-fixed"
-      style={{ backgroundImage: `url('${aboutUsBgPath}')`}}
-      data-ai-hint="construction workers planning"
+      className="py-16 md:py-24 bg-background"
     >
-      <div className="absolute inset-0 bg-black/60 z-0" />
-      <div className="relative z-10 container mx-auto px-4 md:px-6">
+      <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-12">
-          <h2 className="font-headline text-3xl md:text-4xl font-bold text-primary-foreground mb-4">About WEK Build</h2>
-          <p className="text-lg text-white max-w-2xl mx-auto">
+          <h2 className="font-headline text-3xl md:text-4xl font-bold text-primary mb-4">About WEK Build</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Learn more about our dedication to excellence and the principles that guide our work.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-8">
           {aboutData.map((item, index) => (
-            <Card key={index} className="text-center shadow-lg hover:shadow-xl hover:scale-105 hover:z-10 transition-all duration-300 rounded-2xl relative bg-card/90 backdrop-blur-sm">
+            <Card key={index} className="text-center shadow-lg hover:shadow-xl hover:scale-105 hover:z-10 transition-all duration-300 rounded-2xl relative">
               <CardHeader>
                 <div className="flex justify-center">{item.icon}</div>
                 <CardTitle className="font-headline text-2xl text-primary">{item.title}</CardTitle>
@@ -53,7 +47,7 @@ const AboutUsSection = ({ id }: { id: string }) => {
           ))}
         </div>
         <div className="mt-16 text-center">
-          <Card className="max-w-3xl mx-auto p-8 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 rounded-2xl bg-card/90 backdrop-blur-sm">
+          <Card className="max-w-3xl mx-auto p-8 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 rounded-2xl">
              <div className="flex justify-center mb-4">
                 <Users className="h-12 w-12 text-primary" />
             </div>
