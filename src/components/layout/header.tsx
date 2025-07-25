@@ -26,7 +26,7 @@ const Header = () => {
           ))}
         </nav>
         <Button asChild variant="default" size="default" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-          <Link href="#contact">Get a Quote</Link>
+          <Link href="#contact">Get in Touch</Link>
         </Button>
         {/* Mobile Nav Trigger (optional, can be added later) */}
         {/* <Button variant="outline" size="icon" className="md:hidden">
