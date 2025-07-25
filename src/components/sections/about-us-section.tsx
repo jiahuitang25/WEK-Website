@@ -26,7 +26,7 @@ const AboutUsSection = ({ id }: { id: string }) => {
       id={id} 
       className="py-16 md:py-24 bg-background"
     >
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="container mx-auto px-8 md:px-12">
         <div className="text-center mb-12">
           <h2 className="font-headline text-3xl md:text-4xl font-bold text-primary mb-4">About WEK Build</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
