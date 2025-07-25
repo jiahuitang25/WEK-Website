@@ -1,3 +1,5 @@
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Home, Building, Wrench, ClipboardList, DraftingCompass, Shovel } from 'lucide-react';
 
@@ -44,19 +46,30 @@ const ServicesSection = ({ id }: { id: string }) => {
             Comprehensive construction solutions to meet all your project needs.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="flex overflow-x-auto space-x-8 pb-4 -mx-4 px-4">
           {services.map((service, index) => (
-            <Card key={index} className="text-center shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 rounded-2xl">
-              <CardHeader>
-                <div className="flex justify-center">{service.icon}</div>
-                <CardTitle className="font-headline text-2xl text-primary">{service.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{service.description}</p>
-              </CardContent>
-            </Card>
+            <div key={index} className="flex-shrink-0 w-80">
+              <Card className="text-center shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 rounded-2xl h-full flex flex-col">
+                <CardHeader>
+                  <div className="flex justify-center">{service.icon}</div>
+                  <CardTitle className="font-headline text-2xl text-primary">{service.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  <p className="text-muted-foreground">{service.description}</p>
+                </CardContent>
+              </Card>
+            </div>
           ))}
         </div>
+        <style jsx>{`
+          .overflow-x-auto::-webkit-scrollbar {
+            display: none;
+          }
+          .overflow-x-auto {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+        `}</style>
       </div>
     </section>
   );
