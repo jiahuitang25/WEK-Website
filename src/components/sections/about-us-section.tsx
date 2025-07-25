@@ -1,6 +1,8 @@
+"use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Target, ShieldCheck, Award, Users } from 'lucide-react';
+import { useRef, useState, useEffect } from 'react';
 
 const aboutData = [
   {
@@ -21,44 +23,74 @@ const aboutData = [
 ];
 
 const AboutUsSection = ({ id }: { id: string }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
     <section 
       id={id} 
+      ref={sectionRef}
       className="py-16 md:py-24 bg-background"
     >
       <div className="container mx-auto px-8 md:px-12">
-        <div className="text-center mb-12 animate-slide-up">
-          <h2 className="font-headline text-3xl md:text-4xl font-bold text-primary mb-4">About WEK Build</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto animation-delay-200">
-            Learn more about our dedication to excellence and the principles that guide our work.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-8">
-          {aboutData.map((item, index) => (
-            <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 200}ms` }}>
-              <Card className="text-center shadow-lg hover:shadow-xl hover:scale-105 hover:z-10 transition-all duration-300 rounded-2xl relative h-full">
-                <CardHeader>
-                  <div className="flex justify-center">{item.icon}</div>
-                  <CardTitle className="font-headline text-2xl text-primary">{item.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{item.description}</p>
-                </CardContent>
+        {isVisible && (
+          <>
+            <div className="text-center mb-12 animate-slide-up">
+              <h2 className="font-headline text-3xl md:text-4xl font-bold text-primary mb-4">About WEK Build</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto animation-delay-200">
+                Learn more about our dedication to excellence and the principles that guide our work.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-8">
+              {aboutData.map((item, index) => (
+                <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 200}ms` }}>
+                  <Card className="text-center shadow-lg hover:shadow-xl hover:scale-105 hover:z-10 transition-all duration-300 rounded-2xl relative h-full">
+                    <CardHeader>
+                      <div className="flex justify-center">{item.icon}</div>
+                      <CardTitle className="font-headline text-2xl text-primary">{item.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-muted-foreground">{item.description}</p>
+                    </CardContent>
+                  </Card>
+                </div>
+              ))}
+            </div>
+            <div className="mt-16 text-center animate-fade-in animation-delay-600">
+              <Card className="max-w-3xl mx-auto p-8 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 rounded-2xl">
+                 <div className="flex justify-center mb-4">
+                    <Users className="h-12 w-12 text-primary" />
+                </div>
+                <h3 className="font-headline text-2xl font-bold text-primary mb-4">Our Team</h3>
+                <p className="text-muted-foreground">
+                  Our strength lies in our experienced and dedicated team of professionals. From skilled craftsmen to expert project managers, every member of WEK Build is committed to upholding the highest standards of workmanship and customer service. We believe in continuous learning and development, ensuring our team is equipped with the latest industry knowledge and techniques to tackle any challenge.
+                </p>
               </Card>
             </div>
-          ))}
-        </div>
-        <div className="mt-16 text-center animate-fade-in animation-delay-600">
-          <Card className="max-w-3xl mx-auto p-8 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 rounded-2xl">
-             <div className="flex justify-center mb-4">
-                <Users className="h-12 w-12 text-primary" />
-            </div>
-            <h3 className="font-headline text-2xl font-bold text-primary mb-4">Our Team</h3>
-            <p className="text-muted-foreground">
-              Our strength lies in our experienced and dedicated team of professionals. From skilled craftsmen to expert project managers, every member of WEK Build is committed to upholding the highest standards of workmanship and customer service. We believe in continuous learning and development, ensuring our team is equipped with the latest industry knowledge and techniques to tackle any challenge.
-            </p>
-          </Card>
-        </div>
+          </>
+        )}
       </div>
     </section>
   );

@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useRef, useState, useEffect } from 'react';
@@ -50,6 +49,44 @@ const ServicesSection = ({ id }: { id: string }) => {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    const scrollCheck = () => checkForScrollPosition();
+    const { current: scrollEl } = scrollContainerRef;
+
+    if (scrollEl) {
+      scrollCheck();
+      scrollEl.addEventListener('scroll', scrollCheck);
+      window.addEventListener('resize', scrollCheck);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+      if (scrollEl) {
+        scrollEl.removeEventListener('scroll', scrollCheck);
+      }
+      window.removeEventListener('resize', scrollCheck);
+    };
+  }, []);
+
   const checkForScrollPosition = () => {
     const { current } = scrollContainerRef;
     if (current) {
@@ -66,22 +103,6 @@ const ServicesSection = ({ id }: { id: string }) => {
       current.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
     }
   };
-  
-  useEffect(() => {
-    const { current } = scrollContainerRef;
-    if (current) {
-      checkForScrollPosition();
-      current.addEventListener('scroll', checkForScrollPosition);
-      window.addEventListener('resize', checkForScrollPosition);
-
-      return () => {
-        if (current) {
-          current.removeEventListener('scroll', checkForScrollPosition);
-        }
-        window.removeEventListener('resize', checkForScrollPosition);
-      };
-    }
-  }, []);
 
   const repositoryName = 'WEK-Website';
   const getImageUrl = (imageName: string) => {
@@ -89,69 +110,73 @@ const ServicesSection = ({ id }: { id: string }) => {
   };
 
   return (
-    <section id={id} className="py-16 md:py-24 bg-secondary">
+    <section id={id} ref={sectionRef} className="py-16 md:py-24 bg-secondary">
       <div className="container mx-auto px-8 md:px-12">
-        <div className="text-center mb-12 animate-slide-up">
-          <h2 className="font-headline text-3xl md:text-4xl font-bold text-primary mb-4">Our Services</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto animation-delay-200">
-            Comprehensive construction solutions to meet all your project needs.
-          </p>
-        </div>
-        <div className="relative group animate-fade-in animation-delay-400">
-          <Button 
-            variant="outline" 
-            size="icon" 
-            className={`absolute top-1/2 left-0 -translate-y-1/2 z-10 rounded-full h-12 w-12 bg-card/80 hover:bg-card transition-opacity duration-300 opacity-0 group-hover:opacity-100 disabled:opacity-0 disabled:cursor-not-allowed ${!canScrollLeft && 'opacity-0'}`}
-            onClick={() => scroll('left')}
-            disabled={!canScrollLeft}
-            aria-label="Scroll left"
-            >
-            <ChevronLeft className="h-6 w-6" />
-          </Button>
-
-          <div ref={scrollContainerRef} className="flex overflow-x-auto space-x-8 pb-4 -mx-4 px-4 py-8">
-            {services.map((service, index) => (
-              <div key={index} className="flex-shrink-0 w-96 h-96">
-                 <Card 
-                  className="shadow-lg hover:shadow-xl hover:scale-105 hover:z-10 transition-all duration-300 rounded-2xl h-full flex flex-col justify-end relative bg-cover bg-center overflow-hidden"
-                  style={{backgroundImage: `url('${getImageUrl(service.imageName)}')`}}
-                  data-ai-hint={service.imageHint}
+        {isVisible && (
+          <>
+            <div className="text-center mb-12 animate-slide-up">
+              <h2 className="font-headline text-3xl md:text-4xl font-bold text-primary mb-4">Our Services</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto animation-delay-200">
+                Comprehensive construction solutions to meet all your project needs.
+              </p>
+            </div>
+            <div className="relative group animate-fade-in animation-delay-400">
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className={`absolute top-1/2 left-0 -translate-y-1/2 z-10 rounded-full h-12 w-12 bg-card/80 hover:bg-card transition-opacity duration-300 opacity-0 group-hover:opacity-100 disabled:opacity-0 disabled:cursor-not-allowed ${!canScrollLeft && 'opacity-0'}`}
+                onClick={() => scroll('left')}
+                disabled={!canScrollLeft}
+                aria-label="Scroll left"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                  <div className="relative p-6 text-white text-left flex flex-col justify-end h-full">
-                    <CardHeader className="p-0 mb-2">
-                      <CardTitle className="font-headline font-bold text-2xl text-white">{service.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-0">
-                      <p className="text-white/80">{service.description}</p>
-                    </CardContent>
+                <ChevronLeft className="h-6 w-6" />
+              </Button>
+
+              <div ref={scrollContainerRef} className="flex overflow-x-auto space-x-8 pb-4 -mx-4 px-4 py-8">
+                {services.map((service, index) => (
+                  <div key={index} className="flex-shrink-0 w-96 h-96">
+                     <Card 
+                      className="shadow-lg hover:shadow-xl hover:scale-105 hover:z-10 transition-all duration-300 rounded-2xl h-full flex flex-col justify-end relative bg-cover bg-center overflow-hidden"
+                      style={{backgroundImage: `url('${getImageUrl(service.imageName)}')`}}
+                      data-ai-hint={service.imageHint}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                      <div className="relative p-6 text-white text-left flex flex-col justify-end h-full">
+                        <CardHeader className="p-0 mb-2">
+                          <CardTitle className="font-headline font-bold text-2xl text-white">{service.title}</CardTitle>
+                        </CardHeader>
+                        <CardContent className="p-0">
+                          <p className="text-white/80">{service.description}</p>
+                        </CardContent>
+                      </div>
+                    </Card>
                   </div>
-                </Card>
+                ))}
               </div>
-            ))}
-          </div>
 
-          <Button 
-            variant="outline" 
-            size="icon" 
-            className={`absolute top-1/2 right-0 -translate-y-1/2 z-10 rounded-full h-12 w-12 bg-card/80 hover:bg-card transition-opacity duration-300 opacity-0 group-hover:opacity-100 disabled:opacity-0 disabled:cursor-not-allowed ${!canScrollRight && 'opacity-0'}`}
-            onClick={() => scroll('right')}
-            disabled={!canScrollRight}
-            aria-label="Scroll right"
-            >
-            <ChevronRight className="h-6 w-6" />
-          </Button>
-        </div>
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className={`absolute top-1/2 right-0 -translate-y-1/2 z-10 rounded-full h-12 w-12 bg-card/80 hover:bg-card transition-opacity duration-300 opacity-0 group-hover:opacity-100 disabled:opacity-0 disabled:cursor-not-allowed ${!canScrollRight && 'opacity-0'}`}
+                onClick={() => scroll('right')}
+                disabled={!canScrollRight}
+                aria-label="Scroll right"
+                >
+                <ChevronRight className="h-6 w-6" />
+              </Button>
+            </div>
 
-        <style jsx>{`
-          .overflow-x-auto::-webkit-scrollbar {
-            display: none;
-          }
-          .overflow-x-auto {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-          }
-        `}</style>
+            <style jsx>{`
+              .overflow-x-auto::-webkit-scrollbar {
+                display: none;
+              }
+              .overflow-x-auto {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+              }
+            `}</style>
+          </>
+        )}
       </div>
     </section>
   );
