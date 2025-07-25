@@ -4,7 +4,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Home, Building, Wrench, ClipboardList, DraftingCompass, Shovel, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const services = [
   {
@@ -75,7 +75,9 @@ const ServicesSection = ({ id }: { id: string }) => {
       window.addEventListener('resize', checkForScrollPosition);
 
       return () => {
-        current.removeEventListener('scroll', checkForScrollPosition);
+        if (current) {
+          current.removeEventListener('scroll', checkForScrollPosition);
+        }
         window.removeEventListener('resize', checkForScrollPosition);
       };
     }
@@ -109,9 +111,9 @@ const ServicesSection = ({ id }: { id: string }) => {
 
           <div ref={scrollContainerRef} className="flex overflow-x-auto space-x-8 pb-4 -mx-4 px-4 py-8">
             {services.map((service, index) => (
-              <div key={index} className="flex-shrink-0 w-80">
+              <div key={index} className="flex-shrink-0 w-96 h-96">
                  <Card 
-                  className="shadow-lg hover:shadow-xl hover:scale-105 hover:z-10 transition-all duration-300 rounded-2xl h-full flex flex-col justify-end relative bg-cover bg-center overflow-hidden"
+                  className="shadow-lg hover:shadow-xl hover:scale-105 hover:z-10 transition-all duration-300 rounded-2xl h-full flex flex-col justify-start relative bg-cover bg-center overflow-hidden"
                   style={{backgroundImage: `url('${getImageUrl(service.imageName)}')`}}
                   data-ai-hint={service.imageHint}
                 >
