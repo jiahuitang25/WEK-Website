@@ -51,7 +51,7 @@ const ProjectPortfolioSection = ({ id }: { id: string }) => {
             A showcase of our commitment to quality, innovation, and client satisfaction.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 py-8">
           {projects.map((project, index) => (
             <Card key={index} className="overflow-hidden shadow-lg hover:shadow-xl hover:scale-105 hover:z-10 transition-all duration-300 flex flex-col rounded-2xl relative">
               <div className="relative w-full h-64">

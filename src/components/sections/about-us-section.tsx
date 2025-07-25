@@ -29,7 +29,7 @@ const AboutUsSection = ({ id }: { id: string }) => {
             Learn more about our dedication to excellence and the principles that guide our work.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-8">
           {aboutData.map((item, index) => (
             <Card key={index} className="text-center shadow-lg hover:shadow-xl hover:scale-105 hover:z-10 transition-all duration-300 rounded-2xl relative">
               <CardHeader>
