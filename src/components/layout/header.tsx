@@ -18,19 +18,36 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       const sections = navItems.map(item => document.getElementById(item.href.substring(1)));
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
+      const scrollPosition = window.scrollY + window.innerHeight / 2.5; // Adjusted offset for better accuracy
 
+      let currentSection = '';
       for (const section of sections) {
         if (section) {
           if (scrollPosition >= section.offsetTop && scrollPosition < section.offsetTop + section.offsetHeight) {
-            setActiveSection(section.id);
+            currentSection = section.id;
             break;
           }
         }
       }
+      // If no section is active (e.g., at the top or bottom of the page), clear the active state
+      if (!currentSection && sections.length > 0) {
+        const firstSection = sections[0];
+        const lastSection = sections[sections.length - 1];
+        if (firstSection && window.scrollY < firstSection.offsetTop) {
+            // If above the first section, nothing is active
+            currentSection = '';
+        } else if (lastSection && window.scrollY >= lastSection.offsetTop + lastSection.offsetHeight - window.innerHeight) {
+            // If at the very bottom, keep the last item active
+            currentSection = 'contact';
+        }
+      }
+
+
+      setActiveSection(currentSection);
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Run on mount to set initial state
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -38,24 +55,26 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-card">
       <div className="container mx-auto flex h-20 items-center justify-between px-8 md:px-12">
         <Logo />
-        <nav className="hidden items-center space-x-6 md:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className={`text-sm font-medium transition-colors ${
-                activeSection === item.href.substring(1)
-                  ? 'text-primary font-bold'
-                  : 'text-foreground/80 hover:text-foreground'
-              }`}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-        <Button asChild variant="default" size="default" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-          <Link href="#contact">Get in Touch</Link>
-        </Button>
+        <div className="flex items-center space-x-4">
+          <nav className="hidden items-center space-x-2 md:flex">
+            {navItems.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className={`rounded-md px-3 py-2 text-sm font-medium transition-all duration-300 ${
+                  activeSection === item.href.substring(1)
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-foreground/80 hover:bg-muted/80 hover:text-foreground'
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+          <Button asChild variant="default" size="default" className="bg-accent hover:bg-accent/90 text-accent-foreground hidden md:flex">
+            <Link href="#contact">Get in Touch</Link>
+          </Button>
+        </div>
         {/* Mobile Nav Trigger (optional, can be added later) */}
         {/* <Button variant="outline" size="icon" className="md:hidden">
           <Menu className="h-5 w-5" />
