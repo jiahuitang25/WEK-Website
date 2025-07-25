@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -49,7 +50,7 @@ const ServicesSection = ({ id }: { id: string }) => {
         <div className="flex overflow-x-auto space-x-8 pb-4 -mx-4 px-4">
           {services.map((service, index) => (
             <div key={index} className="flex-shrink-0 w-80">
-              <Card className="text-center shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 rounded-2xl h-full flex flex-col">
+              <Card className="text-center shadow-lg hover:shadow-xl hover:scale-105 hover:z-10 transition-all duration-300 rounded-2xl h-full flex flex-col relative">
                 <CardHeader>
                   <div className="flex justify-center">{service.icon}</div>
                   <CardTitle className="font-headline text-2xl text-primary">{service.title}</CardTitle>

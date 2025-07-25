@@ -53,7 +53,7 @@ const ProjectPortfolioSection = ({ id }: { id: string }) => {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
           {projects.map((project, index) => (
-            <Card key={index} className="overflow-hidden shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex flex-col rounded-2xl">
+            <Card key={index} className="overflow-hidden shadow-lg hover:shadow-xl hover:scale-105 hover:z-10 transition-all duration-300 flex flex-col rounded-2xl relative">
               <div className="relative w-full h-64">
                 <Image
                   src={getImageUrl(project.imageName)}
