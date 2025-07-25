@@ -1,6 +1,9 @@
+"use client";
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Logo from '@/components/logo';
+import { useEffect, useState } from 'react';
 
 const navItems = [
   { label: 'About', href: '#about-us' },
@@ -10,6 +13,27 @@ const navItems = [
 ];
 
 const Header = () => {
+  const [activeSection, setActiveSection] = useState<string>('');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = navItems.map(item => document.getElementById(item.href.substring(1)));
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+      for (const section of sections) {
+        if (section) {
+          if (scrollPosition >= section.offsetTop && scrollPosition < section.offsetTop + section.offsetHeight) {
+            setActiveSection(section.id);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-card">
       <div className="container mx-auto flex h-20 items-center justify-between px-8 md:px-12">
@@ -19,7 +43,11 @@ const Header = () => {
             <Link
               key={item.label}
               href={item.href}
-              className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
+              className={`text-sm font-medium transition-colors ${
+                activeSection === item.href.substring(1)
+                  ? 'text-primary font-bold'
+                  : 'text-foreground/80 hover:text-foreground'
+              }`}
             >
               {item.label}
             </Link>
