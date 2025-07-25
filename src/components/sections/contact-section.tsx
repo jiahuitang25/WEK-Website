@@ -64,7 +64,7 @@ const ContactSection = ({ id }: { id: string }) => {
   }, []);
 
   async function onSubmit(data: FormData) {
-    const phoneNumber = "60149458023"; // Your WhatsApp number with country code, without '+'
+    const phoneNumber = "60103116293"; // Your WhatsApp number with country code, without '+'
     
     const messageBody = `
 New Inquiry from Website:
