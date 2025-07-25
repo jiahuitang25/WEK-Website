@@ -120,10 +120,10 @@ const ServicesSection = ({ id }: { id: string }) => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                   <div className="relative p-6 text-white text-left flex flex-col justify-end h-full">
                     <CardHeader className="p-0 mb-2">
-                      <CardTitle className="font-headline font-bold text-3xl text-white">{service.title}</CardTitle>
+                      <CardTitle className="font-headline font-bold text-2xl text-white">{service.title}</CardTitle>
                     </CardHeader>
                     <CardContent className="p-0">
-                      <p className="text-base text-white/90">{service.description}</p>
+                      <p className="text-white/80">{service.description}</p>
                     </CardContent>
                   </div>
                 </Card>
