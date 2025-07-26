@@ -8,67 +8,19 @@ import { useEffect, useState } from 'react';
 const Footer = () => {
   const [currentYear, setCurrentYear] = useState<number | null>(null);
 
-  const businessHoursList = [
-    { day: 'Monday',    hours: '9:00 AM - 5:00 PM', dayIndex: 1, open: 9, close: 17 },
-    { day: 'Tuesday',   hours: '9:00 AM - 5:00 PM', dayIndex: 2, open: 9, close: 17 },
-    { day: 'Wednesday', hours: '9:00 AM - 5:00 PM', dayIndex: 3, open: 9, close: 17 },
-    { day: 'Thursday',  hours: '9:00 AM - 5:00 PM', dayIndex: 4, open: 9, close: 17 },
-    { day: 'Friday',    hours: '9:00 AM - 5:00 PM', dayIndex: 5, open: 9, close: 17 },
-    { day: 'Saturday',  hours: '9:00 AM - 5:00 PM', dayIndex: 6, open: 9, close: 17 },
-    { day: 'Sunday',    hours: '8:00 AM - 6:00 PM', dayIndex: 0, open: 8, close: 18 },
-  ];
-
-  const [liveDayStatus, setLiveDayStatus] = useState<{ dayIndex: number; statusText: string } | null>(null);
-
   useEffect(() => {
     setCurrentYear(new Date().getFullYear());
-
-    const updateLiveStatus = () => {
-        const now = new Date();
-        const currentDayIndex = now.getDay();
-        const currentHour = now.getHours();
-        const todayBusinessHours = businessHoursList.find(bh => bh.dayIndex === currentDayIndex);
-
-        if (todayBusinessHours && typeof todayBusinessHours.open === 'number' && typeof todayBusinessHours.close === 'number') {
-            const isOpen = currentHour >= todayBusinessHours.open && currentHour < todayBusinessHours.close;
-            setLiveDayStatus({ dayIndex: currentDayIndex, statusText: isOpen ? 'Open now' : 'Closed now' });
-        } else {
-            setLiveDayStatus({ dayIndex: currentDayIndex, statusText: 'Hours N/A' });
-        }
-    };
-
-    updateLiveStatus();
-    const intervalId = setInterval(updateLiveStatus, 60000); // Check every minute
-    return () => clearInterval(intervalId);
   }, []);
 
   return (
     <footer className="bg-secondary text-secondary-foreground py-12">
       <div className="container mx-auto px-8 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           <div>
             <Logo className="mb-4 text-primary" />
             <p className="text-sm text-muted-foreground">
               Building dreams into reality with quality and precision.
             </p>
-          </div>
-          <div>
-            <h3 className="font-headline text-lg font-semibold mb-4 text-primary">Business Hours</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              {businessHoursList.map((item) => (
-                <li key={item.day} className="flex flex-col">
-                  <div className="flex justify-between">
-                    <span>{item.day}:</span>
-                    <span>{item.hours}</span>
-                  </div>
-                  {liveDayStatus && item.dayIndex === liveDayStatus.dayIndex && (
-                      <span className={`text-right font-semibold ${liveDayStatus.statusText === 'Open now' ? 'text-green-600' : 'text-destructive'}`}>
-                        ({liveDayStatus.statusText})
-                      </span>
-                  )}
-                </li>
-              ))}
-            </ul>
           </div>
           <div>
             <h3 className="font-headline text-lg font-semibold mb-4 text-primary">Contact Us</h3>

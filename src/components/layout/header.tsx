@@ -6,10 +6,7 @@ import Logo from '@/components/logo';
 import { useEffect, useState } from 'react';
 
 const navItems = [
-  { label: 'About', href: '#about-us' },
-  { label: 'Services', href: '#services' },
   { label: 'Projects', href: '#projects' },
-  { label: 'Contact Us', href: '#contact' },
 ];
 
 const Header = () => {
@@ -36,9 +33,6 @@ const Header = () => {
         if (firstSection && window.scrollY < firstSection.offsetTop) {
             // If above the first section, nothing is active
             currentSection = '';
-        } else if (lastSection && window.scrollY >= lastSection.offsetTop + lastSection.offsetHeight - window.innerHeight) {
-            // If at the very bottom, keep the last item active
-            currentSection = 'contact';
         }
       }
 
@@ -71,9 +65,6 @@ const Header = () => {
               </Link>
             ))}
           </nav>
-          <Button asChild variant="default" size="default" className="bg-accent hover:bg-accent/90 text-accent-foreground hidden md:flex">
-            <Link href="#contact">Get in Touch</Link>
-          </Button>
         </div>
         {/* Mobile Nav Trigger (optional, can be added later) */}
         {/* <Button variant="outline" size="icon" className="md:hidden">
