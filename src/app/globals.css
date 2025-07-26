@@ -13,11 +13,11 @@ body {
 @layer base {
   :root {
     --background: 240 5% 92%; /* #ebebed */
-    --foreground: 0 0% 33%; /* Gray text */
+    --foreground: 0 0% 20%; /* Darker Gray text for high contrast */
     --card: 0 0% 100%; /* White cards */
-    --card-foreground: 0 0% 33%; /* Gray text on cards */
+    --card-foreground: 0 0% 20%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 33%;
+    --popover-foreground: 0 0% 20%;
     --primary: 240 2% 12%; /* #1D1D1F */
     --primary-foreground: 210 40% 98%; /* Light text for primary */
     --secondary: 240 5% 96%; /* Lighter version of background */
@@ -88,6 +88,12 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+  h1,h2,h3,h4,h5,h6 {
+    @apply text-primary;
+  }
+  p {
+    @apply text-lg;
   }
 }
 

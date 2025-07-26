@@ -29,13 +29,11 @@ const Header = () => {
       // If no section is active (e.g., at the top or bottom of the page), clear the active state
       if (!currentSection && sections.length > 0) {
         const firstSection = sections[0];
-        const lastSection = sections[sections.length - 1];
         if (firstSection && window.scrollY < firstSection.offsetTop) {
             // If above the first section, nothing is active
             currentSection = '';
         }
       }
-
 
       setActiveSection(currentSection);
     };
@@ -50,12 +48,12 @@ const Header = () => {
       <div className="container mx-auto flex h-20 items-center justify-between px-8 md:px-12">
         <Logo />
         <div className="flex items-center space-x-4">
-          <nav className="hidden items-center space-x-2 md:flex">
+          <nav className="flex items-center space-x-2">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className={`rounded-md px-3 py-2 text-sm font-medium transition-all duration-300 ${
+                className={`rounded-md px-4 py-2 text-base font-medium transition-all duration-300 ${
                   activeSection === item.href.substring(1)
                     ? 'bg-foreground text-primary-foreground'
                     : 'text-foreground/80 hover:bg-muted/80 hover:text-foreground'
@@ -66,10 +64,6 @@ const Header = () => {
             ))}
           </nav>
         </div>
-        {/* Mobile Nav Trigger (optional, can be added later) */}
-        {/* <Button variant="outline" size="icon" className="md:hidden">
-          <Menu className="h-5 w-5" />
-        </Button> */}
       </div>
     </header>
   );
