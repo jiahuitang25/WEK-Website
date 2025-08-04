@@ -18,15 +18,15 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           <div>
             <Logo className="mb-4 text-primary" />
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground">
               Building dreams into reality with quality and precision.
             </p>
           </div>
           <div>
-            <h3 className="font-headline text-lg font-semibold mb-4 text-primary">Contact Us</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <h3 className="font-headline text-2xl font-semibold mb-4 text-primary">Contact Us</h3>
+            <ul className="space-y-2 text-muted-foreground">
               <li className="flex items-start space-x-2">
-                <MapPin className="h-4 w-4 text-primary mt-1 shrink-0" />
+                <MapPin className="h-5 w-5 text-primary mt-1 shrink-0" />
                 <div>
                   <span>Taman Bukit Mas, Taiping, Malaysia</span>
                   <a 
@@ -41,20 +41,20 @@ const Footer = () => {
                 </div>
               </li>
               <li className="flex items-center space-x-2">
-                <Phone className="h-4 w-4 text-primary" />
+                <Phone className="h-5 w-5 text-primary" />
                 <span>014-945 8023</span>
               </li>
               <li className="flex items-center space-x-2">
-                <Mail className="h-4 w-4 text-primary" />
+                <Mail className="h-5 w-5 text-primary" />
                 <span>gynous@live.com</span>
               </li>
               <li className="flex items-center space-x-2">
-                <Facebook className="h-4 w-4 text-primary" />
+                <Facebook className="h-5 w-5 text-primary" />
                 <a 
                   href="https://www.facebook.com/profile.php?id=100063638340671&mibextid=wwXIfr&rdid=0Nbut7LRK73tLFDl" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="hover:text-primary transition-colors text-muted-foreground"
+                  className="hover:text-primary transition-colors"
                 >
                   W E K ENT.
                 </a>
@@ -62,8 +62,8 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="border-t border-border pt-8 text-center text-xs text-muted-foreground">
-          <p>&copy; {currentYear !== null ? currentYear : '...'} WEK ENT. 简筑大师. All rights reserved.</p>
+        <div className="border-t border-border pt-8 text-center text-muted-foreground">
+          <p className="text-xs">&copy; {currentYear !== null ? currentYear : '...'} WEK ENT. 简筑大师. All rights reserved.</p>
         </div>
       </div>
     </footer>
