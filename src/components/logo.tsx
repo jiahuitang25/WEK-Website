@@ -9,14 +9,14 @@ const Logo = ({ className }: { className?: string }) => {
     <Link href="/" className={`flex items-center space-x-2 text-primary hover:text-primary/90 transition-colors ${className}`}>
       <Image
         src={logoPath}
-        alt="WEK ENT. 简筑大师 Logo"
+        alt="WEK ENT. Logo"
         width={356}
         height={352}
         className="h-14 w-14 md:h-16 md:w-16 border-0"
         data-ai-hint="company logo"
         priority
       />
-      <span className="font-headline text-xl md:text-2xl font-bold">WEK ENT. 简筑大师</span>
+      <span className="font-headline text-xl md:text-2xl font-bold">WEK ENT.</span>
     </Link>
   );
 };

@@ -5,8 +5,8 @@ import Footer from '@/components/layout/footer';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'WEK ENT. 简筑大师 - Building Your Future',
-  description: 'Professional construction services by WEK ENT. 简筑大师.',
+  title: 'WEK ENT. - Building Your Future',
+  description: 'Professional construction services by WEK ENT..',
 };
 
 export default function RootLayout({

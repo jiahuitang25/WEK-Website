@@ -63,7 +63,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="border-t border-border pt-8 text-center text-muted-foreground">
-          <p className="text-xs">&copy; {currentYear !== null ? currentYear : '...'} WEK ENT. 简筑大师. All rights reserved.</p>
+          <p className="text-xs">&copy; {currentYear !== null ? currentYear : '...'} WEK ENT. All rights reserved.</p>
         </div>
       </div>
     </footer>
