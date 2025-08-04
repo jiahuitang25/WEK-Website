@@ -1,12 +1,12 @@
 "use client";
 
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
 import Logo from '@/components/logo';
 import { useEffect, useState } from 'react';
 
 const navItems = [
   { label: 'Projects', href: '#projects' },
+  { label: 'Contact Us', href: '#contact' },
 ];
 
 const Header = () => {
@@ -14,32 +14,50 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = navItems.map(item => document.getElementById(item.href.substring(1)));
-      const scrollPosition = window.scrollY + window.innerHeight / 2.5; // Adjusted offset for better accuracy
+      const sections = navItems.map(item => {
+        const href = item.href;
+        // For internal links, we need to handle the '#'
+        if (href.startsWith('#')) {
+          return document.getElementById(href.substring(1));
+        }
+        return null;
+      }).filter(Boolean) as HTMLElement[];
+
+      const scrollPosition = window.scrollY + window.innerHeight / 2.5;
 
       let currentSection = '';
       for (const section of sections) {
         if (section) {
-          if (scrollPosition >= section.offsetTop && scrollPosition < section.offsetTop + section.offsetHeight) {
-            currentSection = section.id;
-            break;
+          // Adjust the offset check for the footer which might not have a large height
+          const isFooter = section.tagName.toLowerCase() === 'footer';
+          const sectionTop = section.offsetTop;
+          const sectionBottom = section.offsetTop + section.offsetHeight;
+
+          if (isFooter) {
+            // Check if the bottom of the viewport is at or past the footer's top
+            if (window.scrollY + window.innerHeight >= sectionTop) {
+              currentSection = section.id;
+            }
+          } else {
+             if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+              currentSection = section.id;
+              break;
+            }
           }
         }
       }
-      // If no section is active (e.g., at the top or bottom of the page), clear the active state
-      if (!currentSection && sections.length > 0) {
-        const firstSection = sections[0];
-        if (firstSection && window.scrollY < firstSection.offsetTop) {
-            // If above the first section, nothing is active
-            currentSection = '';
-        }
+      
+      // If after checking all sections, we are not in the footer, but the scroll is at the very bottom, keep footer active
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+         const contactSection = document.getElementById('contact');
+         if(contactSection) currentSection = 'contact';
       }
 
       setActiveSection(currentSection);
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Run on mount to set initial state
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
